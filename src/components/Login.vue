@@ -1,6 +1,6 @@
 <template>
     <div>
-       用户名：<input type="text" v-model="" >
+       用户名：<input type="text" v-model="login.username" >
     </div>
 </template>
 
