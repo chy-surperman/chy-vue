@@ -3,19 +3,35 @@ import Router from 'vue-router'
 import appindex from '@/components/home/appindex'
 // import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
+import Home from '../components/Home'
+import LibraryIndex from '../components/library/LibraryIndex'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld
-    // },
     {
-      path: '/index',
-      name: 'appindex',
-      component: appindex
+      path: '/home',
+      name: 'Home',
+      component: Home,
+      redirect: '/index',
+      children: [{
+        path: '/index',
+        name: 'appindex',
+        component: appindex,
+        meta: {
+          requireAuth: true
+        }
+      },
+        {
+          path: '/library',
+          name: 'Library',
+          component: LibraryIndex,
+          meta: {
+            requireAuth: true
+          }
+        }
+      ]
     },
     {
       path: '/login',
